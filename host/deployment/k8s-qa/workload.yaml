@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: host-app
+  namespace: meta-qa
+  labels:
+    app: host-app
+    component: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: host-app
+      component: web
+  template:
+    metadata:
+      labels:
+        app: host-app
+        component: web
+    spec:
+      containers:
+        - name: app
+          image: i7863azepraiacr.azurecr.io/qa/host-app:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always

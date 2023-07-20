@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remote-app
+  namespace: meta-qa
+  labels:
+    app: remote-app
+    component: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remote-app
+      component: web
+  template:
+    metadata:
+      labels:
+        app: remote-app
+        component: web
+    spec:
+      containers:
+        - name: app
+          image: i7863azepraiacr.azurecr.io/qa/remote-app:latest
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always

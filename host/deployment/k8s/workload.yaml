@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meta-ui
+  namespace: meta-dev
+  labels:
+    app: meta-ui
+    component: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meta-ui
+      component: web
+  template:
+    metadata:
+      labels:
+        app: meta-ui
+        component: web
+    spec:
+      containers:
+        - name: app
+          image: i7863azepraiacr.azurecr.io/dev/meta-ui:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
